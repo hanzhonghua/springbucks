@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springboot.springbucks.mapper.OrderMapper">
+
+    <resultMap id="coffeeMap" type="Coffee">
+        <result column="id" property="id" />
+        <result column="customer" property="customer" />
+        <result column="state" property="state" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <sql id="fiels">
+        id,name,price,create_time,update_time
+    </sql>
+
+    <select id="getById" resultMap="coffeeMap">
+        select <include refid="fiels" /> from t_order where id = #{id}
+    </select>
+</mapper>
