@@ -5,7 +5,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * @description: coffee
@@ -19,7 +19,7 @@ public class Coffee implements Serializable {
     private Integer id;
     private String name;
     private BigDecimal price;
-    private Date createTime;
-    private Date updateTime;
+    private Timestamp createTime;
+    private Timestamp updateTime;
 
 }

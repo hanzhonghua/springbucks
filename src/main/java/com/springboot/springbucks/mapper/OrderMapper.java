@@ -10,4 +10,10 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface OrderMapper {
     public Order getById(@Param("id") Integer id);
+
+    void insert(Order order);
+
+    Order getByOrderId(@Param("orderId") Long orderId);
+
+    void updateStatus(@Param("orderId")Long orderId, @Param("status")Integer status);
 }

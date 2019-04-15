@@ -22,4 +22,9 @@ public class CoffeeServiceImpl implements CoffeeService {
 
         return coffeeMapper.getById(id);
     }
+
+    @Override
+    public Coffee getByName(String name) {
+        return coffeeMapper.getByName(name);
+    }
 }

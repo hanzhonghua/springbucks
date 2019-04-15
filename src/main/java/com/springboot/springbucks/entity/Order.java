@@ -5,24 +5,24 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * @description: coffee
+ * @description: order
  * @author: HanZhonghua
  * @create: 2019-03-10 21:11
  */
 public class Order implements Serializable {
 
-    private Integer id;
+    private Long orderId;
     private String customer;
-    private Integer state;
     private Date createTime;
     private Date updateTime;
+    private Integer orderStatus;
 
-    public Integer getId() {
-        return id;
+    public Long getOrderId() {
+        return orderId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
     public String getCustomer() {
@@ -31,14 +31,6 @@ public class Order implements Serializable {
 
     public void setCustomer(String customer) {
         this.customer = customer;
-    }
-
-    public Integer getState() {
-        return state;
-    }
-
-    public void setState(Integer state) {
-        this.state = state;
     }
 
     public Date getCreateTime() {
@@ -55,5 +47,13 @@ public class Order implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Integer getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(Integer orderStatus) {
+        this.orderStatus = orderStatus;
     }
 }

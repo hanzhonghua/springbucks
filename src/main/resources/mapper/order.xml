@@ -2,19 +2,55 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.springboot.springbucks.mapper.OrderMapper">
 
-    <resultMap id="coffeeMap" type="Coffee">
-        <result column="id" property="id" />
+    <resultMap id="orderMap" type="Order">
+        <result column="order_id" property="orderId" />
         <result column="customer" property="customer" />
-        <result column="state" property="state" />
+        <result column="order_status" property="orderStatus" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
 
     <sql id="fiels">
-        id,name,price,create_time,update_time
+        order_id,customer,order_status,create_time,update_time
     </sql>
 
-    <select id="getById" resultMap="coffeeMap">
+    <insert id="insert" parameterType="Order">
+        insert into t_order (
+            <trim suffixOverrides=",">
+                <if test="orderId != null">
+                    `order_id`,
+                </if>
+                <if test="customer != null">
+                    `customer`,
+                </if>
+                <if test="orderStatus != null">
+                    `order_status`,
+                </if>
+            </trim>
+        ) values (
+            <trim suffixOverrides=",">
+                <if test="orderId != null">
+                    #{orderId},
+                </if>
+                <if test="customer != null">
+                    #{customer},
+                </if>
+                <if test="orderStatus != null">
+                    #{orderStatus},
+                </if>
+            </trim>
+        )
+    </insert>
+
+    <update id="updateStatus" >
+        update t_order set order_status=#{status} where order_id=#{orderId}
+    </update>
+
+    <select id="getById" resultMap="orderMap">
         select <include refid="fiels" /> from t_order where id = #{id}
+    </select>
+
+    <select id="getByOrderId" resultMap="orderMap">
+        select <include refid="fiels" /> from t_order where order_id = #{orderId}
     </select>
 </mapper>

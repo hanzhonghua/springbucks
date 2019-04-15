@@ -1,30 +1,19 @@
 package com.springboot.springbucks;
 
-import com.springboot.springbucks.entity.Coffee;
-import com.springboot.springbucks.service.CoffeeService;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
+@ImportResource(locations = {"classpath:vesta/vesta_rest.xml"})
 @MapperScan("com.springboot.springbucks.mapper")
-@RestController
+@EntityScan("com.springboot.springbucks.entity")
 public class SpringbucksApplication {
-
-	@Autowired
-	private CoffeeService coffeeService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbucksApplication.class, args);
-	}
-
-	@RequestMapping("/getById")
-	public Coffee getById () {
-		return coffeeService.getById(1);
 	}
 
 }

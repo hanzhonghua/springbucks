@@ -17,4 +17,8 @@
     <select id="getById" resultMap="coffeeMap">
         select <include refid="fiels" /> from t_coffee where id = #{id}
     </select>
+
+    <select id="getByName" resultMap="coffeeMap">
+        select <include refid="fiels" /> from t_coffee where name = #{name}
+    </select>
 </mapper>

@@ -9,5 +9,7 @@ import org.apache.ibatis.annotations.Param;
  * @create: 2019-03-10 21:21
  */
 public interface CoffeeMapper {
-    public Coffee getById(@Param("id") Integer id);
+    Coffee getById(@Param("id") Integer id);
+
+    Coffee getByName(@Param("name") String name);
 }
