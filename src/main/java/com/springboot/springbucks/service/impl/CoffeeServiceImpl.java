@@ -1,15 +1,14 @@
 package com.springboot.springbucks.service.impl;
 
-import com.alibaba.druid.support.json.JSONUtils;
-import com.alibaba.fastjson.JSONObject;
 import com.springboot.springbucks.RedisUtils;
 import com.springboot.springbucks.config.RedisKey;
 import com.springboot.springbucks.entity.Coffee;
 import com.springboot.springbucks.mapper.CoffeeMapper;
+import com.springboot.springbucks.service.CoffeeService;
+import com.springboot.springbucks.util.JsonUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.springboot.springbucks.service.CoffeeService;
 
 import java.util.concurrent.TimeUnit;
 
@@ -29,17 +28,18 @@ public class CoffeeServiceImpl implements CoffeeService {
     @Override
     public Coffee getById(Integer id) {
 
-        String val = redisUtils.getVal(RedisKey.COFFEE_KEY+id);
+        /*String val = redisUtils.getVal(RedisKey.COFFEE_KEY+id);
         Coffee coffee;
         if(StringUtils.isNotEmpty(val)) {
 
-           coffee = JSONObject.parseObject(val, Coffee.class);
+           coffee = JsonUtil.jsonToPoJo(val, Coffee.class);
         }else {
-
             coffee = coffeeMapper.getById(id);
-            redisUtils.set(RedisKey.COFFEE_KEY+id,JSONObject.toJSONString(coffee), 10, TimeUnit.MINUTES);
-        }
-        return coffee;
+            String cofeeStr = JsonUtil.objectToJson(coffee);
+            redisUtils.set(RedisKey.COFFEE_KEY+id, cofeeStr, 10, TimeUnit.MINUTES);
+        }*/
+
+        return coffeeMapper.getById(id);
     }
 
     @Override
